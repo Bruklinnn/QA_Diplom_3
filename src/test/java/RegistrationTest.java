@@ -1,4 +1,3 @@
-import AllForUser.RegUser;
 import AllForUser.User;
 import AllForUser.UserSteps;
 import PageObject.LoginPage;
@@ -21,7 +20,6 @@ public class RegistrationTest {
     private User userCreate;
     private User userIncorrectPass;
     private boolean userCreated;
-   private RegUser regUser;
     private WebDriver driver;
 
 
@@ -74,7 +72,7 @@ public class RegistrationTest {
             String accessToken = UserSteps.getAccessToken(userCreate);
             if (accessToken != null)
             {
-                UserSteps.deleteUser(userCreate, regUser, accessToken);
+                UserSteps.deleteUser(userCreate, accessToken);
             }
         }
         driver.quit();

@@ -1,4 +1,3 @@
-import AllForUser.RegUser;
 import AllForUser.User;
 import AllForUser.UserSteps;
 import PageObject.*;
@@ -22,9 +21,7 @@ public class AccountPageTest {
     private RegistrationPage registrationPage;
     private static User userLog;
     private static User userReg;
-    private RegUser regUser;
     private boolean userCreated;
-
 
 
     @Before
@@ -115,7 +112,7 @@ public class AccountPageTest {
         if (userCreated)
             {
             String accessToken = UserSteps.getAccessToken(userReg);
-            if (accessToken != null) {UserSteps.deleteUser(userReg, regUser, accessToken);
+            if (accessToken != null) {UserSteps.deleteUser(userReg, accessToken);
             }
         }
         driver.quit();

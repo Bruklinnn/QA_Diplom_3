@@ -1,4 +1,3 @@
-import AllForUser.RegUser;
 import AllForUser.User;
 import AllForUser.UserSteps;
 import PageObject.*;
@@ -20,8 +19,6 @@ public class LoginTest {
     private LoginPage loginPage;
     private ForgotPasswordPage forgotPasswordPage;
     private static User userLogin;
-    private static User userReg;
-    private RegUser regUser;
     private boolean userCreated;
 
 
@@ -33,8 +30,8 @@ public class LoginTest {
         forgotPasswordPage = new ForgotPasswordPage(driver);
         userCreated = false;
         userLogin = new User("Reg@mail.ru", "Reg1233");
-        userReg = new User("Reg@mail.ru", "Reg1233", "Reg");
-        UserSteps.createUser(userReg, regUser);
+        User userReg = new User("Reg@mail.ru", "Reg1233", "Reg");
+        UserSteps.createUser(userReg);
         driver.manage().timeouts().implicitlyWait(Duration.of(15, ChronoUnit.SECONDS));
 
     }
@@ -110,7 +107,7 @@ public class LoginTest {
         if (userCreated)
             driver.quit();{
             String accessToken = UserSteps.getAccessToken(userLogin);
-            if (accessToken != null) UserSteps.deleteUser(userLogin, regUser, accessToken);
+            if (accessToken != null) UserSteps.deleteUser(userLogin, accessToken);
         }
         driver.quit();
     }

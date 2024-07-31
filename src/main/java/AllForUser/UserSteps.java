@@ -12,7 +12,7 @@ public class UserSteps {
     public static final Gson gson = new Gson();
 
     @Step("Create user")
-    public static void createUser(User user, RegUser regUser) {
+    public static void createUser(User user) {
         Response response = given()
                 .log().all()
                 .header("Content-type", "application/json")
@@ -36,7 +36,7 @@ public class UserSteps {
     }
 
     @Step("Delete user")
-    public static void deleteUser(User user, RegUser regUser, String accessToken) {
+    public static void deleteUser(User user, String accessToken) {
         Response delete = given()
                 .log().all()
                 .header("Content-type", "application/json")

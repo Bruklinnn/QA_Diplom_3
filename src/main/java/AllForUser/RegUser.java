@@ -11,7 +11,6 @@ public class RegUser {
         this.accessToken = accessToken;
     }
     public RegUser(){
-
     }
     public String isSuccess() {
         return success;
