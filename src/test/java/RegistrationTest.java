@@ -3,7 +3,6 @@ import AllForUser.User;
 import AllForUser.UserSteps;
 import PageObject.LoginPage;
 import PageObject.MainPage;
-import PageObject.PersonalAccountPage;
 import PageObject.RegistrationPage;
 import driver.WebDriverCreator;
 import io.qameta.allure.junit4.DisplayName;
@@ -11,11 +10,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-
 import static org.junit.Assert.assertEquals;
 
 public class RegistrationTest {
@@ -24,10 +20,7 @@ public class RegistrationTest {
     private LoginPage loginPage;
     private User userCreate;
     private User userIncorrectPass;
-    private User userLogin;
-    private String incorrectPassword;
     private boolean userCreated;
-    private String accessToken;
    private RegUser regUser;
     private WebDriver driver;
 
@@ -41,7 +34,6 @@ public class RegistrationTest {
         loginPage = new LoginPage(driver);
         userCreate = new User("Reg@mail.ru","Reg1233", "Reg");
         userIncorrectPass = new User ("Reg@mail.ru","Reg", "Reg");
-        userLogin = new User ("Reg@mail.ru","Reg");
         userCreated = false;
         driver.manage().timeouts().implicitlyWait(Duration.of(10, ChronoUnit.SECONDS));
     }
@@ -83,10 +75,9 @@ public class RegistrationTest {
             if (accessToken != null)
             {
                 UserSteps.deleteUser(userCreate, regUser, accessToken);
-                driver.quit();
             }
         }
-
+        driver.quit();
     }
 
 }

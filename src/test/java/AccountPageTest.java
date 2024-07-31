@@ -2,14 +2,12 @@ import AllForUser.RegUser;
 import AllForUser.User;
 import AllForUser.UserSteps;
 import PageObject.*;
-import driver.Links;
 import driver.WebDriverCreator;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -17,32 +15,25 @@ import java.time.temporal.ChronoUnit;
 import static org.junit.Assert.assertEquals;
 
 public class AccountPageTest {
-
     private PersonalAccountPage personalAccountPage;
     private WebDriver driver;
     private MainPage mainPage;
     private LoginPage loginPage;
     private RegistrationPage registrationPage;
-    private ForgotPasswordPage forgotPasswordPage;
     private static User userLog;
     private static User userReg;
-    private static UserSteps userSteps;
     private RegUser regUser;
     private boolean userCreated;
-    private WebDriverWait webDriverWait;
 
 
 
     @Before
     public void setUp() {
-
-
         driver = WebDriverCreator.createWebDriver();
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
         personalAccountPage = new PersonalAccountPage(driver);
         registrationPage = new RegistrationPage(driver);
-        forgotPasswordPage = new ForgotPasswordPage(driver);
         userCreated = false;
         userLog = new User("Reg@mail.ru", "Reg1233");
         userReg = new User("Reg@mail.ru", "Reg1233", "Reg");
@@ -125,8 +116,8 @@ public class AccountPageTest {
             {
             String accessToken = UserSteps.getAccessToken(userReg);
             if (accessToken != null) {UserSteps.deleteUser(userReg, regUser, accessToken);
-                driver.quit();
             }
         }
+        driver.quit();
     }
 }
